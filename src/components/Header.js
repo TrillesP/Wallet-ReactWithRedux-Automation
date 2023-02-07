@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-class Header extends Component{
+class Header extends React.Component{
     render() {
         const { globalEmail, totalValue } = this.props;
         return (
             <div>
-                <h2 data-testid="email-header">
+                <h1>Despesas de:</h1>
+                <h3 data-testid="email-header">
                     { globalEmail }
-                </h2>
+                </h3>
                 <p data-testid="total-header">
-                    { totalValue }
+                    { parseFloat(totalValue).toFixed(2) }
                 </p>
                 <p data-testid="currency-header">BRL</p>
             </div> 
