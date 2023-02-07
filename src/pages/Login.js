@@ -5,7 +5,6 @@ import addEmail from '../redux/actions'
 class Login extends Component{
     state = {
         email:'',
-        password:'',
         emailV:false,
         pwV:false,
     };
@@ -16,11 +15,11 @@ class Login extends Component{
         const { email } = this.state;
         dispatch(addEmail(email));
         history.push('/wallet');
-    }
+    };
 
     emailValidation = (event) => {
         const { value } = event.target;
-        const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const regexEmail = /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/i;
         this.setState({emailV: false})
         if (regexEmail.test(value)) {
             this.setState({
@@ -28,7 +27,7 @@ class Login extends Component{
                 email: value,
             })
         }
-    }
+    };
 
     pwValidation = (event) => {
         const { value } = event.target;
@@ -37,7 +36,6 @@ class Login extends Component{
         if (regexPw.test(value)) {
             this.setState({
                 pwV: true,
-                password: value,
             })
         }
     }
@@ -70,8 +68,4 @@ class Login extends Component{
     }
 }
 
-const mapStateToProps = (state) => ({
-    
-});
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);
