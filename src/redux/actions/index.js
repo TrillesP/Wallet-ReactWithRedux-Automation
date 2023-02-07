@@ -6,7 +6,7 @@ export const addEmail = (email) => ({
     payload: email,
   })
 
-export const addTotal = () => ({
+export const addTotal = (value) => ({
     type: ADD_TOTAL,
-    payload: totalValue,
+    payload: value,
 })

@@ -7,7 +7,7 @@ function wallet(state = INITIAL_STATE, action) {
     case ADD_TOTAL:
       return {
         ...state,
-        totalValue: (totalValue + action.payload)
+        totalValue: (state.totalValue + action.payload)
       }
     default:
       return state;
