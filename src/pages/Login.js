@@ -1,0 +1,77 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import addEmail from '../redux/actions'
+
+class Login extends Component{
+    state = {
+        email:'',
+        password:'',
+        emailV:false,
+        pwV:false,
+    };
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const { history, dispatch } = this.props;
+        const { email } = this.state;
+        dispatch(addEmail(email));
+        history.push('/wallet');
+    }
+
+    emailValidation = (event) => {
+        const { value } = event.target;
+        const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        this.setState({emailV: false})
+        if (regexEmail.test(value)) {
+            this.setState({
+                emailV: true,
+                email: value,
+            })
+        }
+    }
+
+    pwValidation = (event) => {
+        const { value } = event.target;
+        const regexPw = /^.{6,}$/;
+        this.setState({pwV: false})
+        if (regexPw.test(value)) {
+            this.setState({
+                pwV: true,
+                password: value,
+            })
+        }
+    }
+
+    render() {
+        const { emailV, pwV } = this.state;
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <input
+                    label="Email: "
+                    type="text"
+                    data-testid="email-input"
+                    onChange={this.emailValidation}
+                />
+                <input
+                    label="Senha: "
+                    type="password"
+                    data-testid="password-input"
+                    onChange={this.pwValidation}
+                />
+                <button
+                    type="submit"
+                    disabled={ (emailV && pwV)? null : 'disabled'}
+                    value="Submit"
+                >
+                    Login
+                </button>
+            </form>
+        );
+    }
+}
+
+const mapStateToProps = (state) => ({
+    
+});
+
+export default connect(mapStateToProps)(Login);
