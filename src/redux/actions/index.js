@@ -1,6 +1,7 @@
 export const ADD_EMAIL = 'ADD_EMAIL';
 export const ADD_TOTAL = 'ADD_TOTAL';
 export const CALL_API = 'CALL_API';
+export const ADD_EXPENSES = 'ADD_EXPENSES';
 
 export const addEmail = (email) => ({
     type: ADD_EMAIL,
@@ -10,6 +11,11 @@ export const addEmail = (email) => ({
 export const addTotal = (value) => ({
     type: ADD_TOTAL,
     payload: value,
+})
+
+export const addExpenses = (infoCambio) => ({
+  type: ADD_EXPENSES,
+  payload: infoCambio,
 })
 
 export const APItoReducer = (data) => ({
