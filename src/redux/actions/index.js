@@ -1,26 +1,38 @@
 export const ADD_EMAIL = 'ADD_EMAIL';
 export const ADD_TOTAL = 'ADD_TOTAL';
+export const SUB_TOTAL = 'SUB_TOTAL';
 export const CALL_API = 'CALL_API';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
+export const DEL_EXPENSES = 'DEL_EXPENSES';
 
 export const addEmail = (email) => ({
-    type: ADD_EMAIL,
-    payload: email,
+  type: ADD_EMAIL,
+  payload: email
 })
 
 export const addTotal = (value) => ({
-    type: ADD_TOTAL,
-    payload: value,
+  type: ADD_TOTAL,
+  payload: value
+})
+
+export const subTotal = (value) => ({
+  type: SUB_TOTAL,
+  payload: value
 })
 
 export const addExpenses = (infoCambio) => ({
   type: ADD_EXPENSES,
-  payload: infoCambio,
+  payload: infoCambio
+})
+
+export const delExpenses = (expenses) => ({
+  type: DEL_EXPENSES,
+  payload: expenses
 })
 
 export const APItoReducer = (data) => ({
-    type: CALL_API,
-    payload: data
+  type: CALL_API,
+  payload: data
 })
 
 export const fetchAPI = () => async (dispatch) => {

@@ -6,7 +6,7 @@ class Header extends React.Component{
         const { globalEmail, totalValue } = this.props;
         return (
             <div>
-                <h1>Despesas de:</h1>
+                <h1>Controle de gastos de:</h1>
                 <h3 data-testid="email-header">
                     { globalEmail }
                 </h3>

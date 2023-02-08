@@ -4,6 +4,7 @@ import { fetchAPI, addTotal, addExpenses } from '../redux/actions';
 
 class Form extends Component{
     state = {
+        keyIndex: 0,
         valueInput: '',
         descriptionInput: '',
         currencyInput: 'USD',
@@ -21,6 +22,7 @@ class Form extends Component{
         event.preventDefault();
         const { dispatch, APIinfo } = this.props;
         const { indexDespesa, valueInput, descriptionInput, currencyInput, methodInput, tagInput } = this.state;
+        let { keyIndex } = this.state;
         const chosenCoin = APIinfo.find((e) => e.code === currencyInput)
         const cambio = valueInput*(+chosenCoin.ask)
         const despesa = {
@@ -32,9 +34,16 @@ class Form extends Component{
             tag: tagInput,
             exchangeRate: chosenCoin
         }
+        keyIndex++;
         dispatch(addExpenses(despesa));
         dispatch(addTotal(cambio));
         this.setState({
+            keyIndex: keyIndex,
+            valueInput: '',
+            descriptionInput: '',
+            currencyInput: 'USD',
+            methodInput: 'PIX',
+            tagInput: 'Lazer',
             indexDespesa: (indexDespesa+1)
         })
     }
@@ -46,10 +55,10 @@ class Form extends Component{
     }
 
     render() {
-        const { valueInput } = this.state;
+        const { valueInput, keyIndex } = this.state;
         const { APIcoins } = this.props;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form key={ keyIndex } onSubmit={this.handleSubmit}>
                 <input 
                     label="Valor: "
                     name="valueInput"

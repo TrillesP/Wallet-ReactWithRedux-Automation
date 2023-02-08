@@ -1,10 +1,9 @@
-import { ADD_EXPENSES, ADD_TOTAL, CALL_API } from "../actions";
+import { ADD_EXPENSES, ADD_TOTAL, SUB_TOTAL, CALL_API, DEL_EXPENSES } from "../actions";
 
 const INITIAL_STATE = {
   totalValue: 0,
   APIcoins: [],
   APIinfo: [],
-  infoCambio: '',
   allExpenses: [],
 };
 
@@ -15,6 +14,11 @@ function wallet(state = INITIAL_STATE, action) {
         ...state,
         totalValue: (state.totalValue + (+action.payload)),
       }
+    case SUB_TOTAL:
+      return {
+        ...state,
+        totalValue: (Math.abs(state.totalValue - (+action.payload)))
+      }
     case CALL_API:
       return {
         ...state,
@@ -24,8 +28,12 @@ function wallet(state = INITIAL_STATE, action) {
     case ADD_EXPENSES:
       return {
         ...state,
-        infoCambio: action.payload,
         allExpenses: [...state.allExpenses, action.payload]
+      }
+    case DEL_EXPENSES:
+      return {
+        ...state,
+        allExpenses: action.payload
       }
     default:
       return state;
