@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 import { Route, Switch } from 'react-router-dom';
+import './style.css';
 
 class App extends React.Component {
   render(){
