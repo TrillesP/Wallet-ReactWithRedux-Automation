@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import addEmail from '../redux/actions/index'
+import { addEmail } from '../redux/actions/index'
 
 class Login extends Component{
     state = {
@@ -19,7 +19,7 @@ class Login extends Component{
 
     emailValidation = (event) => {
         const { value } = event.target;
-        const regexEmail = /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/i;
+        const regexEmail =/^\S+@\S+\.\S+$/;
         this.setState({emailV: false})
         if (regexEmail.test(value)) {
             this.setState({
@@ -27,7 +27,7 @@ class Login extends Component{
                 email: value,
             })
         }
-    };
+    }
 
     pwValidation = (event) => {
         const { value } = event.target;

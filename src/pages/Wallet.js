@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Form from '../components/Form';
 import Expenses from '../components/Expenses';
@@ -10,10 +9,10 @@ class Wallet extends Component{
             <div>
                 <Header />
                 <Form />
-                <Expenses />
+                {/* <Expenses /> */}
             </div>
         );
     }
 }
 
-export default connect()(Wallet);
+export default Wallet;

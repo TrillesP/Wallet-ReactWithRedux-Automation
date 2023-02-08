@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchAPI } from '../redux/actions';
 
 class Form extends Component{
     state = {
         valueInput: '',
-        descriptionInput: ''
+        descriptionInput: '',
+        currencyInput: 'USD',
+        methodInput: 'PIX',
+        tagInput: 'Lazer'
     }
 
     componentDidMount = () => {
-        fetch('https://economia.awesomeapi.com.br/json/all')
-            .then((response) => response.json())
-            .then((data) => this.setState({ exchangeRates: data}));
-        console.log(this.state.exchangeRates);
+        const { dispatch } = this.props;
+        dispatch(fetchAPI());
     }
 
     handleSubmit = (event) => {
@@ -29,7 +31,8 @@ class Form extends Component{
     }
 
     render() {
-        const { valueInput } = this.state
+        const { valueInput } = this.state;
+        const { APIcoins } = this.props;
         return (
             <form onSubmit={this.handleSubmit}>
                 <input 
@@ -50,35 +53,40 @@ class Form extends Component{
                 />
                 <select 
                     label="Conversão: "
+                    defaultValue=""
                     name="currencyInput"
                     data-testid="currency-input"
                     onBlur={this.handleChange}
                 >
-                    {}
+                    { APIcoins.map((coin, index) => (
+                        <option key={index}>{coin}</option>
+                    ))}
                 </select>
                 <select 
                     label="Forma de pagamento: "
+                    defaultValue="PIX"
                     name="methodInput"
                     data-testid="method-input"
                     onBlur={this.handleChange}
                 >
-                    <option value="money">Money</option>
-                    <option value="debit">Cartão de Débito</option>
-                    <option value="credit">Cartão de Crédito</option>
-                    <option value="pix" selected>PIX</option>
+                    <option>Money</option>
+                    <option>Cartão de Débito</option>
+                    <option>Cartão de Crédito</option>
+                    <option>PIX</option>
                 </select>
                 <select
                     label="Tipo de despesa: "
+                    defaultValue="Lazer"
                     name="tagInput"
                     data-testid="tag-input"
                     onBlur={this.handleChange}
                 >
-                    <option value="food" selected>Alimentação</option>
-                    <option value="entertainment">Lazer</option>
-                    <option value="health">Saúde</option>
-                    <option value="work">Trabalho</option>
-                    <option value="transport">Transporte</option>
-                    <option value="other">Outros</option>
+                    <option>Alimentação</option>
+                    <option>Lazer</option>
+                    <option>Saúde</option>
+                    <option>Trabalho</option>
+                    <option>Transporte</option>
+                    <option>Outros</option>
                 </select>
                 <button
                     type="submit"
@@ -93,7 +101,7 @@ class Form extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    globalEmail: state.users.globalEmail
+    APIcoins: state.wallet.APIcoins
 });
 
 export default connect(mapStateToProps)(Form);
