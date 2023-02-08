@@ -7,11 +7,19 @@ class Form extends Component{
         descriptionInput: ''
     }
 
+    componentDidMount = () => {
+        fetch('https://economia.awesomeapi.com.br/json/all')
+            .then((response) => response.json())
+            .then((data) => this.setState({ exchangeRates: data}));
+        console.log(this.state.exchangeRates);
+    }
+
     handleSubmit = (event) => {
-        event.preventDefault();
-        const { dispatch } = this.props;
-        const {  } = this.state;
-        dispatch(addTotal(email));
+        // event.preventDefault();
+        // const { dispatch } = this.props;
+        // const { valueInput } = this.state;
+        // valueInput
+        // dispatch(addTotal(email));
     }
 
     handleChange = (event) => {

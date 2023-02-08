@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
 
-class Expenses extends Component{
-
-
+// class Expenses extends Component{
 
 
 
 
-    render() {
-        const { globalEmail } = this.props;
-        return (
+
+
+//     render() {
+//         const { globalEmail } = this.props;
+//         return (
 
 
 
             
-        );
-    }
+//         );
+//     }
 
-}
+// }
 
-const mapStateToProps = (state) => ({
-    globalEmail: state.users.globalEmail
-});
+// const mapStateToProps = (state) => ({
+//     globalEmail: state.users.globalEmail
+// });
 
-export default connect(mapStateToProps)(Expenses);
+// export default connect(mapStateToProps)(Expenses);

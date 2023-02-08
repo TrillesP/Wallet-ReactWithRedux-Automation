@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import addEmail from '../redux/actions'
+import addEmail from '../redux/actions/index'
 
 class Login extends Component{
     state = {

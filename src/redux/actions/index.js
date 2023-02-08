@@ -1,12 +1,16 @@
 export const ADD_EMAIL = 'ADD_EMAIL';
 export const ADD_TOTAL = 'ADD_TOTAL';
 
-export const addEmail = (email) => ({
+export function addEmail(email) {
+  return {
     type: ADD_EMAIL,
     payload: email,
-  })
+  }
+}
 
-export const addTotal = (value) => ({
+export function addTotal(value) {
+  return {
     type: ADD_TOTAL,
     payload: value,
-})
+  }
+}
