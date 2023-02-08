@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAPI } from '../redux/actions';
+import { fetchAPI, addTotal, addExpenses } from '../redux/actions';
 
 class Form extends Component{
     state = {
@@ -8,7 +8,8 @@ class Form extends Component{
         descriptionInput: '',
         currencyInput: 'USD',
         methodInput: 'PIX',
-        tagInput: 'Lazer'
+        tagInput: 'Lazer',
+        indexDespesa: 0,
     }
 
     componentDidMount = () => {
@@ -17,11 +18,25 @@ class Form extends Component{
     }
 
     handleSubmit = (event) => {
-        // event.preventDefault();
-        // const { dispatch } = this.props;
-        // const { valueInput } = this.state;
-        // valueInput
-        // dispatch(addTotal(email));
+        event.preventDefault();
+        const { dispatch, APIinfo } = this.props;
+        const { indexDespesa, valueInput, descriptionInput, currencyInput, methodInput, tagInput } = this.state;
+        const chosenCoin = APIinfo.find((e) => e.code === currencyInput)
+        const cambio = valueInput*(+chosenCoin.ask)
+        const despesa = {
+            id: indexDespesa,
+            value: valueInput,
+            description: descriptionInput,
+            currency: currencyInput,
+            method: methodInput,
+            tag: tagInput,
+            exchangeRate: chosenCoin
+        }
+        dispatch(addExpenses(despesa));
+        dispatch(addTotal(cambio));
+        this.setState({
+            indexDespesa: (indexDespesa+1)
+        })
     }
 
     handleChange = (event) => {
@@ -53,7 +68,7 @@ class Form extends Component{
                 />
                 <select 
                     label="Conversão: "
-                    defaultValue=""
+                    defaultValue="USD"
                     name="currencyInput"
                     data-testid="currency-input"
                     onBlur={this.handleChange}
@@ -101,7 +116,8 @@ class Form extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    APIcoins: state.wallet.APIcoins
+    APIcoins: state.wallet.APIcoins,
+    APIinfo: state.wallet.APIinfo
 });
 
 export default connect(mapStateToProps)(Form);
