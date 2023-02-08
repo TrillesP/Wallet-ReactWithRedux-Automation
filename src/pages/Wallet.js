@@ -9,7 +9,7 @@ class Wallet extends Component{
             <div>
                 <Header />
                 <Form />
-                {/* <Expenses /> */}
+                <Expenses />
             </div>
         );
     }
