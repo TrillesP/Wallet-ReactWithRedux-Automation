@@ -25,9 +25,9 @@ class Form extends Component{
         const cambio = valueInput*(+chosenCoin.ask)
         const despesa = {
             id: indexDespesa,
-            value: valueInput,
+            value: cambio,
             description: descriptionInput,
-            currency: currencyInput,
+            currency: chosenCoin.name,
             method: methodInput,
             tag: tagInput,
             exchangeRate: chosenCoin
