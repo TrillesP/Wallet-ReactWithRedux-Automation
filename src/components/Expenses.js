@@ -59,19 +59,19 @@ class Expenses extends Component{
                         <td>
                             <button
                                 id={transaction.id}
-                                data-testid="delete-btn"
-                                onClick={this.deleteExpense}
+                                data-testid="edit-btn"
+                                onClick={this.editExpense}
                             >
-                                Excluir
+                                Edit
                             </button>
                         </td>
                         <td>
                             <button
                                 id={transaction.id}
-                                data-testid="edit-btn"
-                                onClick={this.editExpense}
+                                data-testid="delete-btn"
+                                onClick={this.deleteExpense}
                             >
-                                Edit
+                                Excluir
                             </button>
                         </td>
                     </tr>
