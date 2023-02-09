@@ -60,6 +60,7 @@ class Login extends Component{
                 />
                 <button
                     type="submit"
+                    data-testid="login-btn"
                     disabled={ (emailV && pwV)? null : 'disabled'}
                     value="Submit"
                 >
