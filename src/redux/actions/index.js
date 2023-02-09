@@ -3,7 +3,7 @@ export const ADD_TOTAL = 'ADD_TOTAL';
 export const SUB_TOTAL = 'SUB_TOTAL';
 export const CALL_API = 'CALL_API';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
-export const DEL_EXPENSES = 'DEL_EXPENSES';
+export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
 
 export const addEmail = (email) => ({
   type: ADD_EMAIL,
@@ -25,8 +25,8 @@ export const addExpenses = (infoCambio) => ({
   payload: infoCambio
 })
 
-export const delExpenses = (expenses) => ({
-  type: DEL_EXPENSES,
+export const updateExpenses = (expenses) => ({
+  type: UPDATE_EXPENSES,
   payload: expenses
 })
 

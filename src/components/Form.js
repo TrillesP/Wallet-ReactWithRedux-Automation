@@ -59,24 +59,24 @@ class Form extends Component{
         const { APIcoins } = this.props;
         return (
             <form key={ keyIndex } onSubmit={this.handleSubmit}>
+                <label htmlFor='valueInput'>Valor: </label>
                 <input 
-                    label="Valor: "
                     name="valueInput"
                     type="number"
                     placeholder="Digite um valor"
                     data-testid="value-input"
                     onChange={this.handleChange}
                 />
+                <label htmlFor='descriptionInput'>Descrição: </label>
                 <input
-                    label="Descrição: "
                     name="descriptionInput"
                     type="text"
                     placeholder="Descrição da sua despesa"
                     data-testid="description-input"
                     onChange={this.handleChange}
                 />
+                <label htmlFor='currencyInput'>Conversão: </label>
                 <select 
-                    label="Conversão: "
                     defaultValue="USD"
                     name="currencyInput"
                     data-testid="currency-input"
@@ -86,8 +86,8 @@ class Form extends Component{
                         <option key={index}>{coin}</option>
                     ))}
                 </select>
+                <label htmlFor='methodInput'>Forma de pagamento: </label>
                 <select 
-                    label="Forma de pagamento: "
                     defaultValue="PIX"
                     name="methodInput"
                     data-testid="method-input"
@@ -98,8 +98,8 @@ class Form extends Component{
                     <option>Cartão de Crédito</option>
                     <option>PIX</option>
                 </select>
+                <label htmlFor='tagInput'>Tipo de despesa: </label>
                 <select
-                    label="Tipo de despesa: "
                     defaultValue="Lazer"
                     name="tagInput"
                     data-testid="tag-input"

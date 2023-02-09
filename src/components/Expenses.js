@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { delExpenses, subTotal } from '../redux/actions';
+import { updateExpenses, subTotal } from '../redux/actions';
 
 class Expenses extends Component{
 
@@ -10,12 +10,31 @@ class Expenses extends Component{
         const delValue = allExpenses.filter((e) => e.id === (+event.target.id))
         dispatch(subTotal(delValue[0].value))
         const newExpenses = allExpenses.filter((e) => e.id !== (+event.target.id))
-        dispatch(delExpenses(newExpenses))
+        console.log(newExpenses)
+        dispatch(updateExpenses(newExpenses))
+    }
+
+    editExpense = (event) => {
+        event.preventDefault();
+        const { allExpenses, dispatch } = this.props;
+        const descriptionToInput = (event.target.parentElement.parentElement.querySelectorAll('td')[1]);
+        const tagToInput = (event.target.parentElement.parentElement.querySelectorAll('td')[5]);
+        const element = allExpenses.find((e) => e.id === (+event.target.id));
+        const idOfElement = allExpenses.indexOf(element);
+        descriptionToInput.toggleAttribute('contenteditable');
+        tagToInput.toggleAttribute('contenteditable');
+        if (event.target.innerText === 'Salvar') {
+            allExpenses[idOfElement].description = descriptionToInput.innerText;
+            allExpenses[idOfElement].tag = tagToInput.innerText;
+            console.log(allExpenses)
+            dispatch(updateExpenses(allExpenses));
+            return event.target.innerText = 'Edit';
+        }
+        event.target.innerText = 'Salvar';
     }
 
     render() {
         const { allExpenses } = this.props;
-        console.log(allExpenses)
         return (
             <table>
                 <caption>Despesas</caption>
@@ -46,17 +65,21 @@ class Expenses extends Component{
                                 Excluir
                             </button>
                         </td>
+                        <td>
+                            <button
+                                id={transaction.id}
+                                data-testid="edit-btn"
+                                onClick={this.editExpense}
+                            >
+                                Edit
+                            </button>
+                        </td>
                     </tr>
                 )) }
                 </tbody>
             </table>
-
-
-
-            
         );
     }
-
 }
 
 const mapStateToProps = (state) => ({

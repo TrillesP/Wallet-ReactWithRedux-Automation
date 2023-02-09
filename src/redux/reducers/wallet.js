@@ -1,4 +1,4 @@
-import { ADD_EXPENSES, ADD_TOTAL, SUB_TOTAL, CALL_API, DEL_EXPENSES } from "../actions";
+import { ADD_EXPENSES, ADD_TOTAL, SUB_TOTAL, CALL_API, UPDATE_EXPENSES } from "../actions";
 
 const INITIAL_STATE = {
   totalValue: 0,
@@ -30,7 +30,7 @@ function wallet(state = INITIAL_STATE, action) {
         ...state,
         allExpenses: [...state.allExpenses, action.payload]
       }
-    case DEL_EXPENSES:
+    case UPDATE_EXPENSES:
       return {
         ...state,
         allExpenses: action.payload

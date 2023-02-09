@@ -44,14 +44,16 @@ class Login extends Component{
         const { emailV, pwV } = this.state;
         return (
             <form onSubmit={this.handleSubmit}>
+                <label htmlFor='email-input'>E-mail: </label>
                 <input
-                    label="Email: "
+                    name="email-input"
                     type="text"
                     data-testid="email-input"
                     onChange={this.emailValidation}
                 />
+                <label htmlFor='password-input'>Senha: </label>
                 <input
-                    label="Senha: "
+                    name="password-input"
                     type="password"
                     data-testid="password-input"
                     onChange={this.pwValidation}
