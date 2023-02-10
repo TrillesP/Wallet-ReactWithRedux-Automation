@@ -1,5 +1,7 @@
+import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -12,8 +14,16 @@ export const renderWithRedux = (
       store = createStore(
         rootReducer,
         composeWithDevTools(applyMiddleware(thunk),),
-        initialState)
+        initialState),
+      initialEntries = ['/'],
+      history = createMemoryHistory({ initialEntries }),
     } = {}) => ({
-      ...render(<Provider store={store}>{component}</Provider>),
-      store
-})
+      ...render(
+      <Router history={ history }>
+        <Provider store={ store }>
+          {component}
+        </Provider>
+      </Router>,),
+      store,
+      history,
+});
