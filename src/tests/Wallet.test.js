@@ -25,7 +25,7 @@ describe('Página de despesas', () => {
         
         await screen.findByText('USD');
         expect(screen.getByTestId('currency-input')).toHaveTextContent('USD');
-        
+
         expect(screen.getByTestId('total-header')).toHaveTextContent('0.00');
         userEvent.type(screen.getByTestId('value-input'), '10');
         userEvent.type(screen.getByTestId('description-input'), 'abacaxi');
@@ -44,20 +44,61 @@ describe('Página de despesas', () => {
         userEvent.click(screen.getByTestId('add-btn'));
     });
 
-    // test('Testando se, ao adicionar uma despesa, os inputs voltam aos valores default', () => {
-    //     renderWithRedux(<App />, {initialEntries: ['/wallet']});
-    // });
+    test('Testando se, ao adicionar uma despesa, os inputs voltam aos valores default', async () => {
+        renderWithRedux(<App />, {initialEntries: ['/wallet']});
 
-    // test('Testando botão de editar despesa e se o valor editado é guardado corretamente no estado global', () => {
-    //     renderWithRedux(<App />, {initialEntries: ['/wallet']});
-    // });
+        await screen.findByText('USD');
+        
+        userEvent.type(screen.getByTestId('value-input'), '10');
+        userEvent.type(screen.getByTestId('description-input'), 'abacaxi');
+        userEvent.selectOptions(screen.getByTestId('currency-input'), 'CAD');
+        userEvent.selectOptions(screen.getByTestId('method-input'), 'Dinheiro');
+        userEvent.selectOptions(screen.getByTestId('tag-input'), 'Alimentação');
+        userEvent.click(screen.getByTestId('add-btn'));
 
-    // test('Testando botão de excluir despesa e se o estado global com todas as despesas é atualizado corretamente', () => {
-    //     renderWithRedux(<App />, {initialEntries: ['/wallet']});
-    // });
+        expect(screen.getByTestId('value-input')).toHaveTextContent('');
+        expect(screen.getByTestId('description-input')).toHaveTextContent('');
+        expect(screen.getByTestId('currency-input')).toHaveTextContent('USD');
+        expect(screen.getByTestId('method-input')).toHaveTextContent('PIX');
+        expect(screen.getByTestId('tag-input')).toHaveTextContent('Lazer');
+    });
 
-    // test('Testando exclusão de várias despesas e os valores alterando corretamente', () => {
-    //     renderWithRedux(<App />, {initialEntries: ['/wallet']});
-    // });
+    test('Testando botão de editar despesa e se o valor editado é guardado corretamente no estado global', async () => {
+        renderWithRedux(<App />, {initialEntries: ['/wallet']});
+
+        await screen.findByText('USD');
+        
+        userEvent.type(screen.getByTestId('value-input'), '10');
+        userEvent.type(screen.getByTestId('description-input'), 'abacaxi');
+        userEvent.selectOptions(screen.getByTestId('currency-input'), 'CAD');
+        userEvent.selectOptions(screen.getByTestId('method-input'), 'Dinheiro');
+        userEvent.selectOptions(screen.getByTestId('tag-input'), 'Alimentação');
+        userEvent.click(screen.getByTestId('add-btn'));
+
+    });
+
+    test('Testando botão de excluir despesa e seu funcionamento completo', async () => {
+        renderWithRedux(<App />, {initialEntries: ['/wallet']});
+
+        await screen.findByText('USD');
+        
+        userEvent.type(screen.getByTestId('value-input'), '10');
+        userEvent.type(screen.getByTestId('description-input'), 'abacaxi');
+        userEvent.selectOptions(screen.getByTestId('currency-input'), 'CAD');
+        userEvent.selectOptions(screen.getByTestId('method-input'), 'Dinheiro');
+        userEvent.selectOptions(screen.getByTestId('tag-input'), 'Alimentação');
+        userEvent.click(screen.getByTestId('add-btn'));
+
+        expect(screen.queryAllByRole('cell')).toHaveLength(8);
+        expect(screen.getByTestId('total-header')).not.toHaveTextContent('0.00');
+
+        userEvent.click(screen.getByTestId('delete-btn'));
+        expect(screen.queryByRole('cell')).toBeNull();
+        expect(screen.getByTestId('total-header')).toHaveTextContent('0.00');
+    });
+
+    test('--------------------', async () => {
+        renderWithRedux(<App />, {initialEntries: ['/wallet']});
+    });
 
 });
