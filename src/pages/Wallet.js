@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Form from '../components/Form';
 import Expenses from '../components/Expenses';
@@ -15,4 +16,4 @@ class Wallet extends Component{
     }
 }
 
-export default Wallet;
+export default connect()(Wallet);
