@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Header extends React.Component{
+class Header extends Component{
     render() {
         const { globalEmail, totalValue } = this.props;
         return (

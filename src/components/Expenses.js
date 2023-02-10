@@ -10,7 +10,6 @@ class Expenses extends Component{
         const delValue = allExpenses.filter((e) => e.id === (+event.target.id))
         dispatch(subTotal(delValue[0].value))
         const newExpenses = allExpenses.filter((e) => e.id !== (+event.target.id))
-        console.log(newExpenses)
         dispatch(updateExpenses(newExpenses))
     }
 

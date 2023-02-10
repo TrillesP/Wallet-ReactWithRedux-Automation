@@ -24,7 +24,7 @@ class Form extends Component{
         const { indexDespesa, valueInput, descriptionInput, currencyInput, methodInput, tagInput } = this.state;
         let { keyIndex } = this.state;
         const chosenCoin = APIinfo.find((e) => e.code === currencyInput)
-        const cambio = valueInput*(+chosenCoin.ask)
+        const cambio = valueInput*(+(chosenCoin.ask))
         const despesa = {
             id: indexDespesa,
             value: cambio,
@@ -93,7 +93,7 @@ class Form extends Component{
                     data-testid="method-input"
                     onBlur={this.handleChange}
                 >
-                    <option>Money</option>
+                    <option>Dinheiro</option>
                     <option>Cartão de Débito</option>
                     <option>Cartão de Crédito</option>
                     <option>PIX</option>
@@ -114,6 +114,7 @@ class Form extends Component{
                 </select>
                 <button
                     type="submit"
+                    data-testid="add-btn"
                     disabled={ (valueInput)? null : 'disabled'}
                     value="Submit"
                 >
