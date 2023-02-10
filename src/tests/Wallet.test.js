@@ -63,7 +63,7 @@ describe('Página de despesas', () => {
         expect(screen.getByTestId('tag-input')).toHaveTextContent('Lazer');
     });
 
-    test('Testando botão de editar despesa e se o valor editado é guardado corretamente no estado global', async () => {
+    test('Testando botão de editar despesa e se o valor editado é guardado corretamente', async () => {
         renderWithRedux(<App />, {initialEntries: ['/wallet']});
 
         await screen.findByText('USD');
@@ -75,6 +75,24 @@ describe('Página de despesas', () => {
         userEvent.selectOptions(screen.getByTestId('tag-input'), 'Alimentação');
         userEvent.click(screen.getByTestId('add-btn'));
 
+        expect(screen.getByTestId('total-header')).not.toHaveTextContent('0.00');
+
+        userEvent.type(screen.getByTestId('value-input'), '500');
+        userEvent.type(screen.getByTestId('description-input'), 'banana');
+        userEvent.selectOptions(screen.getByTestId('currency-input'), 'JPY');
+        userEvent.selectOptions(screen.getByTestId('method-input'), 'PIX');
+        userEvent.selectOptions(screen.getByTestId('tag-input'), 'Alimentação');
+        userEvent.click(screen.getByTestId('add-btn'));
+
+        expect(screen.queryAllByTestId('edit-btn')).toHaveLength(2);
+        userEvent.click(screen.getAllByTestId('edit-btn')[1]);
+        expect(screen.queryAllByTestId('edit-btn')[1].innerText).toBe('Salvar');
+        expect(screen.queryAllByRole('cell')[9]).toHaveTextContent('banana');
+        userEvent.dblClick(screen.queryAllByRole('cell')[9]);
+        userEvent.type(screen.queryAllByRole('cell')[9], '{backspace}abacate');
+        userEvent.click(screen.getAllByTestId('edit-btn')[1]);
+        expect(screen.queryAllByTestId('edit-btn')[1].innerText).toBe('Edit');
+        expect(screen.queryAllByRole('cell')[9]).toHaveTextContent('abacate');
     });
 
     test('Testando botão de excluir despesa e seu funcionamento completo', async () => {

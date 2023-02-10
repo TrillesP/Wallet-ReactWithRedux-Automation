@@ -1,6 +1,6 @@
+import React from 'react';
 import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { composeWithDevTools } from '@redux-devtools/extension';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
@@ -10,20 +10,21 @@ import rootReducer from '../../redux/reducers';
 export const renderWithRedux = (
     component,
     {
-      initialState,
+      initialState = {},
       store = createStore(
         rootReducer,
-        composeWithDevTools(applyMiddleware(thunk),),
-        initialState),
+        initialState,
+        applyMiddleware(thunk)),
       initialEntries = ['/'],
       history = createMemoryHistory({ initialEntries }),
     } = {}) => ({
       ...render(
-      <Router history={ history }>
-        <Provider store={ store }>
+      <Provider store={ store }>
+        <Router history={ history }>
           {component}
-        </Provider>
-      </Router>,),
+        </Router>
+      </Provider>
+      ),
       store,
       history,
 });
