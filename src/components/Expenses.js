@@ -26,7 +26,6 @@ class Expenses extends Component{
         if (event.target.innerText === 'Salvar') {
             allExpenses[idOfElement].description = descriptionToInput.innerText;
             allExpenses[idOfElement].tag = tagToInput.innerText;
-            console.log(allExpenses)
             dispatch(updateExpenses(allExpenses));
             return event.target.innerText = 'Edit';
         }
