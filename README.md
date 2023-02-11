@@ -29,13 +29,21 @@ Na pasta do projeto você pode rodar os seguintes comandos:
 Roda o app e abre a página [http://localhost:3000](http://localhost:3000) no seu browser.
 
 Obs: Antes de iniciar o app é necessário a prévia instalação de algumas bibliotecas manualmente com os seguintes comandos:
+
 `npm i react-router-dom@5.0.0`
+
 `npm i redux`
+
 `npm i react-redux`
+
 `npm i redux-thunk`
+
 `npm i @testing-library/react`
+
 `npm i @redux-devtools/extension`
+
 `npm install --save-dev @testing-library/user-event @testing-library/dom`
+
 `npm install cypress`
 
 ### `npm test`
