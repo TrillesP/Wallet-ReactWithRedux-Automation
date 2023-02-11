@@ -60,4 +60,4 @@ Roda os testes feitos em Cypress que, assim como os usando RTL, também cobrem 1
 
 ## Objetivo
 
-O objetivo aqui é demonstrar aprendizados em React e Redux, utilizando também chamadas de API, e meu entendimento sobre as conexões entre funções no código, além de demonstrar conhecimento de testes automatizados suficientes para abranger o código completo.
+O objetivo aqui é demonstrar aprendizados em React e Redux, utilizando também chamadas de API, e meu entendimento sobre as conexões entre funções no código, além de demonstrar conhecimento de testes automatizados suficientes, tanto utilizando a RTL quanto Cypress, para abranger o código completo.
