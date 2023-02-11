@@ -115,8 +115,4 @@ describe('Página de despesas', () => {
         expect(screen.getByTestId('total-header')).toHaveTextContent('0.00');
     });
 
-    test('--------------------', async () => {
-        renderWithRedux(<App />, {initialEntries: ['/wallet']});
-    });
-
 });
