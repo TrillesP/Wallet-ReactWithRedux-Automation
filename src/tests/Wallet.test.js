@@ -5,6 +5,7 @@ import { renderWithRedux } from './render/renderWithRedux';
 import { APIfetchData } from './APIfetchData/APIfetchData';
 import App from '../App';
 
+
 describe('Página de despesas', () => {
     beforeEach( () => {
         jest.spyOn(global, 'fetch').mockResolvedValue(

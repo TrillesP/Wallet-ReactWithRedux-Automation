@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { renderWithRedux } from './render/renderWithRedux';
 
+
 test('Testando front page, login e botão com link para o componente/página wallet', async () => {
   renderWithRedux(<App />);
   const emailElement = screen.getByTestId('email-input');
