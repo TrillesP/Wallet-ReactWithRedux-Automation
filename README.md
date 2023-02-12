@@ -54,7 +54,7 @@ Roda os testes feitos com a React Testing Library no modo interactive watch.
 
 Roda os testes com a RTL e mostra a cobertura do código.
 
-### `npx cypress open` - only works if app is running with `npm start` at first
+### `npx cypress open` - só funciona com o app em execução simultânea (`npm start` tendo sido executado)
 
 Roda os testes feitos em Cypress que, assim como os usando RTL, também cobrem 100% do código.
 
