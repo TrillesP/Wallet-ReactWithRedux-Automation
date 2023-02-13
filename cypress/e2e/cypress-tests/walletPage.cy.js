@@ -76,6 +76,30 @@ describe('teste Wallet page', () => {
         cy.get(':nth-child(2) > :nth-child(8) > [data-testid="delete-btn"]').click()
         cy.get('[data-testid="delete-btn"]').click()
         cy.get('[data-testid="delete-btn"]').should('not.exist')
+
+        cy.contains('0.00').should('exist')
+    })
+
+    it('testa botão de Edit, suas mudanças de valores e se os valores editados na carteira se mantém após Salvar', () => {
+        cy.get('[data-testid="value-input"]').type('10')
+        cy.get('[data-testid="description-input"]').type('abacaxi')
+        cy.get('[data-testid="currency-input"]').select('CAD')
+        cy.get('[data-testid="method-input"]').select('Dinheiro')
+        cy.get('[data-testid="tag-input"]').select('Alimentação')
+        cy.get('[data-testid="value-input"]').type('{enter}')
+
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').should('have.text', 'abacaxi')
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').should('not.have.attr', 'contenteditable')
+        cy.get('[data-testid="edit-btn"]').should('have.text', 'Edit')
+        cy.get('[data-testid="edit-btn"]').click()
+        cy.get('[data-testid="edit-btn"]').should('have.text', 'Salvar')
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').should('have.attr', 'contenteditable')
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').click()
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').clear()
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').type('{backspace}abacate')
+        cy.get('[data-testid="edit-btn"]').click()
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').should('not.have.attr', 'contenteditable')
+        cy.get('tbody > :nth-child(2) > :nth-child(2)').should('have.text', 'abacate')
     })
 
   })
