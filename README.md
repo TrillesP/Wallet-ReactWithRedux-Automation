@@ -6,6 +6,10 @@ Na primeira página deve ser feito um login fictício com e-mail e senha (que de
 
 Na segunda pode ser preenchido um formulário para adicionar despesas a uma carteira de gastos, uma por uma, com possibilidade de edição e exclusão.
 
+## Objetivo
+
+O objetivo aqui é demonstrar aprendizados em React e Redux, utilizando também chamadas de API, e meu entendimento sobre as conexões entre funções no código, além de demonstrar conhecimento de testes automatizados suficientes, tanto utilizando a RTL quanto Cypress, para abranger o código completo.
+
 ## Características presentes
 
 - Função de renderização customizada para fazer o render funcionar com Redux e Rotas.
@@ -57,7 +61,3 @@ Roda os testes com a RTL e mostra a cobertura do código.
 ### `npx cypress open` - só funciona com o app em execução simultânea (`npm start` tendo sido executado)
 
 Roda os testes feitos em Cypress que, assim como os usando RTL, também cobrem 100% do código.
-
-## Objetivo
-
-O objetivo aqui é demonstrar aprendizados em React e Redux, utilizando também chamadas de API, e meu entendimento sobre as conexões entre funções no código, além de demonstrar conhecimento de testes automatizados suficientes, tanto utilizando a RTL quanto Cypress, para abranger o código completo.
