@@ -18,6 +18,12 @@ body {
     padding: 5px;
     transition: background-color .3s;
   }
+  button:disabled,
+  button[disabled]{
+    background-color: #c6c6c6;
+    border: none;
+    color: #666666;
+  }
   button:hover {
     background-color: #1796b0;
   }
